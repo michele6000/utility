@@ -1,4 +1,4 @@
-package com.wichee.bepiattaformaunica.utils;
+package configProps;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

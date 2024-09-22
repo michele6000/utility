@@ -1,7 +1,7 @@
-package com.wichee.bepiattaformaunica.utils;
+package configProps;
 
-import com.wichee.bepiattaformaunica.entities.ConfigHolderEntity;
-import com.wichee.bepiattaformaunica.repository.ConfigHolderRepository;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -12,8 +12,9 @@ import org.springframework.core.Ordered;
 import java.lang.reflect.Field;
 import java.util.Optional;
 
-@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+@Slf4j
 @Configuration
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 public class ConfigPropertyPostProcessor implements BeanPostProcessor {
 
     @Autowired
@@ -34,6 +35,8 @@ public class ConfigPropertyPostProcessor implements BeanPostProcessor {
                     } catch (IllegalAccessException e) {
                         throw new RuntimeException("Failed to set field value", e);
                     }
+                } else {
+                    log.error("Rilevata proprietà core non valorizzata: core.{}", key);
                 }
             }
         }
